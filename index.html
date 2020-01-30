@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+       alert('¡Piedra papel o tijera, el primero en llegar a 3 gana!')
+       
+       function computerPlay() {
+            let num = Math.random()
+
+            if (num < 0.33) {
+                return 'piedra';
+            } else if (num > 0.33 && num < 0.66) {
+                return 'papel';
+            } else if (num > 0.66) {
+                return 'tijera';
+            }
+        }
+
+        console.log('la pc eligió: ' + computerPlay())
+
+
+        function playRound(playerSelection, computerSelection) {
+
+            playerSelection = playerSelection.toLowerCase()
+
+
+            if (playerSelection == 'piedra' && computerSelection == 'papel') {
+                return 'perdiste man'
+            } else if (playerSelection == 'piedra' && computerSelection == 'piedra') {
+                return 'empataste man'
+            } else if (playerSelection == 'piedra' && computerSelection == 'tijera') {
+                return 'ganaste man'
+            } else if (playerSelection == 'papel' && computerSelection == 'papel') {
+                return 'empataste man'
+            } else if (playerSelection == 'papel' && computerSelection == 'piedra') {
+                return 'ganaste man'
+            } else if (playerSelection == 'papel' && computerSelection == 'tijera') {
+                return 'perdiste man'
+            } else if (playerSelection == 'tijera' && computerSelection == 'papel') {
+                return 'ganaste man'
+            } else if (playerSelection == 'tijera' && computerSelection == 'piedra') {
+                return 'perdiste man'
+            } else if (playerSelection == 'tijera' && computerSelection == 'tijera') {
+                return 'empataste man'
+            } else {
+                alert('no se entendió, escribí de nuevo');
+                
+            }
+        }
+
+        let scorePlayer = 0
+        let scoreComputer = 0
+
+
+        function game() {
+
+
+            for (let i = 0; i < 5; i++) {
+
+                playerSelection = prompt('piedra, papel o tijera?')
+
+                let ronda = (playRound(playerSelection, computerPlay()))
+               
+                if (ronda != undefined){
+                    alert(ronda)
+               } else {
+                   
+                    i--
+
+               }
+               
+
+                if (ronda == 'ganaste man') {
+                    scorePlayer += 1
+                } else if (ronda == 'perdiste man') {
+                    scoreComputer += 1
+                } else if (ronda == 'empataste man'){
+                    i--
+                }
+
+                console.log('puntos Jugador: ' + scorePlayer + '\n' + 'puntos PC: ' + scoreComputer)
+                if (scoreComputer == 3) {
+                alert('Se termino, gano la pc con 3 puntos.')
+                i = 5;
+
+            } else if (scorePlayer == 3) {
+                alert('Ganaste! llegaste a 3 puntos primero que la pc. Te felicito campeón. ')
+                i = 5;
+
+            } 
+            }
+
+            
+        }
+
+
+
+
+
+        game();
+
+
+      
+    </script>
+</body>
+
+</html>
