@@ -15,23 +15,22 @@
        function computerPlay() {
             let num = Math.random()
 
-            if (num < 0.33) {
+            if (num <= 0.33) {
                 return 'piedra';
-            } else if (num > 0.33 && num < 0.66) {
+            } else if (num >= 0.33 && num <= 0.66) {
                 return 'papel';
-            } else if (num > 0.66) {
+            } else if (num >= 0.66) {
                 return 'tijera';
             }
         }
 
-        console.log('la pc eligió: ' + computerPlay())
 
 
         function playRound(playerSelection, computerSelection) {
 
             playerSelection = playerSelection.toLowerCase()
 
-
+            
             if (playerSelection == 'piedra' && computerSelection == 'papel') {
                 return 'perdiste man'
             } else if (playerSelection == 'piedra' && computerSelection == 'piedra') {
@@ -67,7 +66,14 @@
 
                 playerSelection = prompt('piedra, papel o tijera?')
 
-                let ronda = (playRound(playerSelection, computerPlay()))
+                if(playerSelection === null){
+                    alert('cancelaste el juego')
+                    return
+                }
+
+                computerSelection = computerPlay()
+
+                let ronda = playRound(playerSelection, computerSelection);
                
                 if (ronda != undefined){
                     alert(ronda)
@@ -86,8 +92,16 @@
                     i--
                 }
 
+                console.log('la pc eligió: ' + computerSelection)
                 console.log('puntos Jugador: ' + scorePlayer + '\n' + 'puntos PC: ' + scoreComputer)
-                if (scoreComputer == 3) {
+                
+                
+               
+
+            
+        }
+
+        if (scoreComputer == 3) {
                 alert('Se termino, gano la pc con 3 puntos.')
                 i = 5;
 
@@ -97,11 +111,6 @@
 
             } 
             }
-
-            
-        }
-
-
 
 
 
